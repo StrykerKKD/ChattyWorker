@@ -1,0 +1,9 @@
+name: ChattyWorker
+version: 0.0.1
+description: A minimal command-line application.
+environment:
+  sdk: '>=1.0.0 <2.0.0'
+dependencies:
+  uuid: any
+dev_dependencies:
+  unittest: any
