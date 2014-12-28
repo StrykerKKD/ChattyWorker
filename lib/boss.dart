@@ -1,26 +1,40 @@
 part of ChattyWorker;
 
+_startWorker(msg) {
+  print(Boss.workers);
+  Boss.workers[msg["worker"]].startWorking(msg["sendPort"]);
+}
+
 abstract class Boss {
 
   ReceivePort response;
   SendPort request;
-  Map<String,Isolate> workers;
+  static Map<String,Worker> workers;
+  Map<String,Isolate> isoWorkers;
 
   Boss() {
-    response.listen((String message) {
-      manage(message);
+    response = new ReceivePort();
+    workers = new Map<String,Worker>();
+    isoWorkers = new Map<String, Isolate>();
+    response.listen((message) {
+      if(message is SendPort) {
+        request = message;
+      } else {
+        manage(message);
+      }
     });
   }
 
   void doYourJob(Worker worker) {
-    Isolate.spawn(worker.startWorking, response.sendPort).then((isoWorker) {
-      workers[worker.name] = isoWorker;
+    workers[worker.name] = worker;
+    Isolate.spawn(_startWorker, {"sendPort":response.sendPort,"worker":worker.name}).then((isoWorker) {
+      isoWorkers[worker.name] = isoWorker;
     });
   }
 
-  void manage(String message);
+  void manage(message);
 
-  void speak(String message) {
+  void speak(message) {
     request.send(message);
   }
 

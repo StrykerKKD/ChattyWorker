@@ -2,25 +2,25 @@ part of ChattyWorker;
 
 abstract class Worker {
 
-  ReceivePort response = new ReceivePort();
+  ReceivePort response;
   SendPort request;
   final name;
 
-  Worker(): name = uuid.v4();
+  Worker(): this.called(uuid.v4());
 
-  Worker.called(this.name);
+  Worker.called(this.name): response = new ReceivePort();
 
   void startWorking(SendPort request) {
     this.request = request;
     request.send(response.sendPort);
-    response.listen((String message) {
+    response.listen((message) {
       work(message);
     });
   }
 
-  void work(String message);
+  void work(message);
 
-  void speak(String message) {
+  void speak(message) {
     request.send(message);
   }
 

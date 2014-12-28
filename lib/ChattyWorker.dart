@@ -5,7 +5,6 @@
 library ChattyWorker;
 
 import 'dart:isolate';
-import 'dart:async';
 
 import 'package:uuid/uuid.dart';
 
@@ -13,7 +12,3 @@ part 'boss.dart';
 part 'worker.dart';
 
 Uuid uuid = new Uuid();
-
-int calculate() {
-  return 6 * 7;
-}
