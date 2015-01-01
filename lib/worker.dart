@@ -21,7 +21,6 @@ abstract class Worker {
         canWork = true;
         speak(Status.WORKING);
       }
-      work(message);
     });
   }
 
