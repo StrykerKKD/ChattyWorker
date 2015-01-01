@@ -8,9 +8,10 @@ abstract class Worker {
 
   Worker(): this.called(uuid.v4());
 
-  Worker.called(this.name): response = new ReceivePort();
+  Worker.called(this.name);
 
   void startWorking(SendPort request) {
+    response = new ReceivePort();
     this.request = request;
     request.send(response.sendPort);
     response.listen((message) {
