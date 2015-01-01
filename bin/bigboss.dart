@@ -1,12 +1,24 @@
 part of example;
 
-class BigBoss extends Boss{
+class BigBoss extends Boss {
+
+  bool started = false;
 
   @override
   void manage(message) {
-    speak("mama");
     print("From worker: $message");
-    byebye();
+    if (!started) {
+      started = true;
+      speak("start");      
+    }
+    switch (message) {
+      case "started":        
+        speak("stop");
+        break;
+      case "stoped":
+        byebye();
+        break;
+    }
   }
 
 }
