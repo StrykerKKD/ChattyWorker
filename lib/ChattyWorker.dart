@@ -10,5 +10,6 @@ import 'package:uuid/uuid.dart';
 
 part 'boss.dart';
 part 'worker.dart';
+part 'standardmessage.dart';
 
 Uuid uuid = new Uuid();
