@@ -4,21 +4,18 @@ _manager(message) {
   message[0].startWorking(message[1]);
 }
 
-
 abstract class Boss {
 
   ReceivePort response;
   SendPort request;
-  
+
   Boss() {
     response = new ReceivePort();
     response.listen((message) {
-      if(message is SendPort) {
-        print('Boss:A');
+      if (message is SendPort) {
         request = message;
-        speak("ready");
+        speak(Order.STARTWORKING);
       } else {
-        print('Boss:B');
         manage(message);
       }
     });
