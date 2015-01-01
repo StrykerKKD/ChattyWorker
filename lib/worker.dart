@@ -17,9 +17,9 @@ abstract class Worker {
     request.send(response.sendPort);
     response.listen((message) {
       if (canWork) work(message);
-      if (message == Order.STARTWORKING) {
+      if (message == Status.READY) {
         canWork = true;
-        speak(Status.WORKING);
+        speak(Status.READY);
       }
     });
   }

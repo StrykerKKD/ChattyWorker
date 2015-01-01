@@ -14,7 +14,7 @@ abstract class Boss {
     response.listen((message) {
       if (message is SendPort) {
         request = message;
-        speak(Order.STARTWORKING);
+        speak(Status.READY);
       } else {
         manage(message);
       }
