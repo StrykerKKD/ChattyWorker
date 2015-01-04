@@ -11,7 +11,7 @@ abstract class Worker {
 
   Worker.called(this.name);
 
-  void startWorking(SendPort request) {
+  void startWorking(SendPort request) {    
     response = new ReceivePort();
     this.request = request;
     request.send(response.sendPort);

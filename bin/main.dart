@@ -11,5 +11,5 @@ main() {
   BigBoss bigBoss = new BigBoss();
   WorkerBob bob = new WorkerBob();
 
-  bigBoss.doYourJob(bob);
+  bigBoss.hire(bob);
 }
