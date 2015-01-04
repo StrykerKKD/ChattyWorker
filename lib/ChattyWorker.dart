@@ -5,6 +5,7 @@
 library ChattyWorker;
 
 import 'dart:isolate';
+
 import 'package:uuid/uuid.dart';
 
 part 'boss.dart';
