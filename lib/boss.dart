@@ -1,6 +1,6 @@
 part of ChattyWorker;
 
-_workerStarter(message) {
+void _workerStarter(message) {
   message[0].startWorking(message[1]);
 }
 
@@ -21,7 +21,7 @@ abstract class Boss {
     });
   }
 
-  void doYourJob(Worker worker) {
+  void hire(Worker worker) {
     Isolate.spawn(_workerStarter, [worker, response.sendPort]);
   }
 
